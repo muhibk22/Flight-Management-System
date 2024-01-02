@@ -184,21 +184,22 @@ void deletePassenger(passenger *passengers, int &currentIndex, int maxRecords)
     bool deleted = false;
     cout << "Enter the Passenger ID you want to delete: ";
     cin >> passengerCheck;
+
     for (int i = 0; i < currentIndex; i++)
     {
         if (passengerCheck == passengers[i].passengerId)
-            deleted = true;
         {
-            for (int j = i; j < maxRecords - 1; j++)
+            deleted = true;
+            for (int j = i; j < currentIndex - 1; j++)
             {
-                passengers[i] = passengers[i + 1];
+                passengers[j] = passengers[j + 1];
             }
         }
-        currentIndex--;
-        break;
     }
+
     if (deleted)
     {
+        currentIndex--;
         cout << "Passenger with ID: " << passengerCheck << " successfully deleted from records. " << endl;
     }
     else

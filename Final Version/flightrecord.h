@@ -135,7 +135,7 @@ void viewFlight(const flight *flights, int currentIndex)
 void checkFlight(const flight *flights, int currentIndex)
 {
     string flightCheck;
-    cout << "Enter the Flight ID of the passenger you want to check: " << endl;
+    cout << "Enter the Flight ID of the Flight you want to check: " << endl;
     cin >> flightCheck;
     bool exists = false;
     int i = 0;
@@ -164,7 +164,7 @@ void checkFlight(const flight *flights, int currentIndex)
 void editFlight(flight *flights, int currentIndex)
 {
     string flightCheck;
-    cout << "Enter the Flight ID of the passenger you want to edit: " << endl;
+    cout << "Enter the Flight ID of the Flight you want to edit: " << endl;
     cin >> flightCheck;
     bool edited = false;
     int i = 0;
@@ -201,21 +201,22 @@ void delFlight(flight *flights, int &currentIndex, int maxRecords)
     bool deleted = false;
     cout << "Enter the Flight ID of the flight you want to delete: ";
     cin >> flightCheck;
+
     for (int i = 0; i < currentIndex; i++)
     {
         if (flightCheck == flights[i].flightId)
-            deleted = true;
         {
-            for (int j = i; j < maxRecords - 1; j++)
+            deleted = true;
+            for (int j = i; j < currentIndex - 1; j++)
             {
-                flights[i] = flights[i + 1];
+                flights[j] = flights[j + 1];
             }
         }
-        currentIndex--;
-        break;
     }
+
     if (deleted)
     {
+        currentIndex--;
         cout << "Flight with Flight ID: " << flightCheck << " successfully deleted from records. " << endl;
     }
     else
